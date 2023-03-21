@@ -5,6 +5,9 @@ using UnityEngine;
 [DefaultExecutionOrder(5)]
 public class BaseTroop : MonoBehaviour
 {
+    public int MaxHP = 10;
+    public int CurrentHP = 10;
+
     public float Speed = 5f;
 
     int waypointIndex = 1;
@@ -16,14 +19,13 @@ public class BaseTroop : MonoBehaviour
         waypointIndex++;
         if(currentTargetPos.x == 666 && currentTargetPos.y == 666 && currentTargetPos.z == 666) // Pretty evil code if you know what it does. Cruel even. Caused by a hate for non-nullable values :)
         {
-            Suicide();
+            SelfDestruct();
         }
         currentTargetPos.y = this.transform.position.y;
     }
 
-    private void Suicide()
+    private void SelfDestruct()
     {
-        
         GameManager.Instance.TroopManager.RemoveTroop(this.gameObject);
         Destroy(this.gameObject);
     }
@@ -67,6 +69,9 @@ public class BaseTroop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(CurrentHP <= 0)
+        {
+            SelfDestruct();
+        }
     }
 }

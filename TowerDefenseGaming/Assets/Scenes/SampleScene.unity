@@ -2233,7 +2233,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &711116790
 PrefabInstance:
@@ -2465,7 +2465,7 @@ Transform:
   - {fileID: 886839667}
   - {fileID: 106697081}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &764660137
 PrefabInstance:
@@ -2989,7 +2989,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 57.961, y: -42.14, z: 0}
 --- !u!1001 &966718210
 PrefabInstance:
@@ -3395,7 +3395,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1151789939
 MonoBehaviour:
@@ -3411,6 +3411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TroopManager: {fileID: 0}
   WayPointsRoot: {fileID: 632376931}
+  DEBUG_SHOW_RANGE_GIZMO: 0
+  DEBUG_SHOW_AIMLOCK: 1
 --- !u!114 &1151789940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3657,7 +3659,7 @@ Transform:
   m_Children:
   - {fileID: 632376932}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391350158
 GameObject:
