@@ -9,8 +9,7 @@ public class BaseTurret : MonoBehaviour
     public bool TargetLocked = false;
     public GameObject CurrentTarget = null;
 
-    public bool DEBUG_SHOW_RANGE_GIZMO = false;
-    public bool DEBUG_SHOW_AIMLOCK = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +23,10 @@ public class BaseTurret : MonoBehaviour
         FindNearestEnemy();
         AimAtTroop();
 
+        if(CurrentTarget == null)
+        {
+            TargetLocked = false;
+        }
 
     }
 
@@ -48,14 +51,7 @@ public class BaseTurret : MonoBehaviour
                         TargetLocked = true;
                     }
                 }
-                else
-                {
-                    if(CurrentTarget == troop)
-                    {
-                        CurrentTarget = null;
-                        TargetLocked = false;
-                    }
-                }
+
             }
             
         }
@@ -64,13 +60,13 @@ public class BaseTurret : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(DEBUG_SHOW_RANGE_GIZMO)
+        if(GameManager.Instance.DEBUG_SHOW_RANGE_GIZMO)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(this.transform.position, Range);
         }
         
-        if(DEBUG_SHOW_AIMLOCK)
+        if(GameManager.Instance.DEBUG_SHOW_AIMLOCK)
         {
             if (TargetLocked && CurrentTarget != null)
             {

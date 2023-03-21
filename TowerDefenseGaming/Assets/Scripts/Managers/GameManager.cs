@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     private Vector3 CurrentGoalPosition;
     private int CurrentWayPointIndex = 0;
 
+    public bool DEBUG_SHOW_RANGE_GIZMO = false;
+    public bool DEBUG_SHOW_AIMLOCK = true;
+
     private void Awake()
     {
         _instance = this;
