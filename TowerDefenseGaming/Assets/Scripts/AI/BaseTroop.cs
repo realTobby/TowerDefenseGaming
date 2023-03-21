@@ -14,11 +14,11 @@ public class BaseTroop : MonoBehaviour
     {
         currentTargetPos = GameManager.Instance.GetWaypoint(waypointIndex);
         waypointIndex++;
-
         if(currentTargetPos.x == 666 && currentTargetPos.y == 666 && currentTargetPos.z == 666) // Pretty evil code if you know what it does. Cruel even. Caused by a hate for non-nullable values :)
         {
             Suicide();
         }
+        currentTargetPos.y = this.transform.position.y;
     }
 
     private void Suicide()

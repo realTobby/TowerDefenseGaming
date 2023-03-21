@@ -12,6 +12,8 @@ public class PlayTileSelector : MonoBehaviour
 
     public BasePlayTile LastSelectedTile;
 
+    public GameObject Prefab_Turret;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class PlayTileSelector : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("MouseInteraction")))
         {
             if(hit.transform.CompareTag("PlayTile"))
             {
@@ -44,11 +46,41 @@ public class PlayTileSelector : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (LastSelectedTile != null)
+            {
+                LastSelectedTile.DeSelect();
+                LastSelectedTile = null;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleMouseOver();
+        HandleMouseClick();
     }
+
+    private void HandleMouseClick()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            if (LastSelectedTile != null)
+            {
+                LastSelectedTile.BuildTurret(Prefab_Turret);
+            }
+        }
+
+        if(Input.GetMouseButtonUp(1))
+        {
+            if(LastSelectedTile != null)
+            {
+                LastSelectedTile.RemoveBuilding();
+            }
+        }
+        
+    }
+
 }
