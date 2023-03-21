@@ -24,6 +24,7 @@ public class BaseTroop : MonoBehaviour
     private void Suicide()
     {
         Destroy(this.gameObject);
+        GameManager.Instance.TroopManager.RemoveTroop(this.gameObject);
     }
 
 

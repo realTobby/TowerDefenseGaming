@@ -8,10 +8,10 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance = null;
     public static GameManager Instance => _instance;
 
+    public TroopManager TroopManager;
+
     public GameObject WayPointsRoot;
 
-    public GameObject Troop;
-    public float TroopSpeed;
     private GameObject[] WayPointsArray;
 
     private Vector3 CurrentGoalPosition;
@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        TroopManager = GetComponent<TroopManager>();
+    }
+
+    public Vector3 GetFirstWaypoint()
+    {
+        return WayPointsArray[0].transform.position;
     }
 
     public Vector3 GetWaypoint(int index)
