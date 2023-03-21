@@ -6,6 +6,11 @@ public class BaseTurret : MonoBehaviour
 {
     public float Range = 1;
 
+    public bool TargetLocked = false;
+    public GameObject CurrentTarget = null;
+
+    public bool DEBUG_SHOW_RANGE_GIZMO = false;
+    public bool DEBUG_SHOW_AIMLOCK = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +22,16 @@ public class BaseTurret : MonoBehaviour
     void Update()
     {
         FindNearestEnemy();
+        AimAtTroop();
+
+
+    }
+
+
+    private void AimAtTroop()
+    {
+        if(CurrentTarget != null)
+            this.transform.LookAt(CurrentTarget.transform);
     }
 
     private void FindNearestEnemy()
@@ -27,7 +42,19 @@ public class BaseTurret : MonoBehaviour
             {
                 if (Vector3.Distance(troop.transform.position, transform.position) < Range)
                 {
-                    this.transform.LookAt(troop.transform);
+                    if(TargetLocked == false && CurrentTarget == null)
+                    {
+                        CurrentTarget = troop;
+                        TargetLocked = true;
+                    }
+                }
+                else
+                {
+                    if(CurrentTarget == troop)
+                    {
+                        CurrentTarget = null;
+                        TargetLocked = false;
+                    }
                 }
             }
             
@@ -37,8 +64,22 @@ public class BaseTurret : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(this.transform.position, Range);
+        if(DEBUG_SHOW_RANGE_GIZMO)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(this.transform.position, Range);
+        }
+        
+        if(DEBUG_SHOW_AIMLOCK)
+        {
+            if (TargetLocked && CurrentTarget != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(this.transform.position, CurrentTarget.transform.position);
+            }
+        }
+        
+
     }
 
 }
